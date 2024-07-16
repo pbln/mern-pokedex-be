@@ -8,9 +8,9 @@ jwt.sign({_id},process.env.SECRET , {expiresIn:'3d'})
 
 // login user
 const loginUser =async(req,res)=>{
-    const {name,email,password} = req.body
+    const {email,password} = req.body
     try{
-        const user = await User.login(name,email ,password)
+        const user = await User.login(email ,password)
         // create a token
         const token = createToken(user._id)
         res.status(200).json({user,token})
