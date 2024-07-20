@@ -30,13 +30,13 @@ userSchema.statics.signup = async function ( email , password){
     }
 
     if (!validator.isLength(password, { min: 8 })) {
-        errors.push('Password must be at least 8 characters long.');
+        throw Error('Password must be at least 8 characters long.');
       }
       if (!/[A-Z]/.test(password)) {
-        errors.push('Password must contain at least one uppercase character.');
+        throw Error('Password must contain at least one uppercase character.');
       }
       if (!/[0-9]/.test(password)) {
-        errors.push('Password must contain at least one number.');
+        throw Error('Password must contain at least one number.');
       }
       
     const exists = await this.findOne({email})
